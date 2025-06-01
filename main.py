@@ -9,6 +9,7 @@ from threadPoolUtil import get_transformer_thread_pool
 from apscheduler.schedulers.background import BackgroundScheduler
 from transformer import train_model_task, predict
 from db import connection, query_stock_data_by_code
+from fileUtil import create_or_clear_directory
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -70,4 +71,6 @@ def get_predict(code):
 
 
 if __name__ == "__main__":
+    create_or_clear_directory('model')
+    create_or_clear_directory('runs')
     app.run(debug=False, host="0.0.0.0", port=5000)
