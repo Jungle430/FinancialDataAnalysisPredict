@@ -4,6 +4,7 @@ from loguru import logger
 from typing import List
 
 STOCK_VALUES = "ts, closing_price, opening_price, highest_price, lowest_price, trading_volume, rise_and_fall"
+STOCK_VALUES_CN = "时间戳, closing_price, opening_price, highest_price, lowest_price, trading_volume, rise_and_fall"
 STOCK_STABLE = "`financial_data_analysis`.`stock`"
 
 

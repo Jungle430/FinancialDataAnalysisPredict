@@ -8,7 +8,7 @@ from flask import Flask, app, jsonify
 from threadPoolUtil import get_transformer_thread_pool
 from apscheduler.schedulers.background import BackgroundScheduler
 from transformer import train_model_task, predict
-from db import connection, query_stock_data_by_code
+from db import STOCK_VALUES_CN, connection, query_stock_data_by_code
 from fileUtil import create_or_clear_directory
 from dotenv import load_dotenv
 
@@ -43,8 +43,8 @@ log = logging.getLogger("werkzeug")
 log.setLevel(logging.ERROR)
 
 
-@app.route("/predict/<code>", methods=["GET"])  # type: ignore
-def get_predict(code):
+@app.route("/predict/data/<code>", methods=["GET"])  # type: ignore
+def get_predict_data(code):
     try:
         predicted_values = predict(
             model_path=f"./model/transformer_predictor_{code}.pth",
@@ -70,7 +70,19 @@ def get_predict(code):
         )
 
 
+@app.route("/predict/attributes", methods=["GET"])  # type: ignore
+def get_predict_attributes():
+    return jsonify(
+        {
+            "success": True,
+            "data": STOCK_VALUES_CN[1:],
+            "err_msg": None,
+            "ts": time.time(),
+        }
+    )
+
+
 if __name__ == "__main__":
-    create_or_clear_directory('model')
-    create_or_clear_directory('runs')
+    create_or_clear_directory("model")
+    create_or_clear_directory("runs")
     app.run(debug=False, host="0.0.0.0", port=5000)
