@@ -75,7 +75,7 @@ def get_predict_attributes():
     return jsonify(
         {
             "success": True,
-            "data": STOCK_VALUES_CN[1:],
+            "data": STOCK_VALUES_CN,
             "err_msg": None,
             "ts": time.time(),
         }
