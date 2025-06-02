@@ -85,4 +85,5 @@ def get_predict_attributes():
 if __name__ == "__main__":
     create_or_clear_directory("model")
     create_or_clear_directory("runs")
+    os.mkdir("runs/btc_transformer_experiment")
     app.run(debug=False, host="0.0.0.0", port=5000)
