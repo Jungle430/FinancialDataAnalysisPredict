@@ -22,7 +22,6 @@ from typing import Tuple
 from constData import DEFAULT_WEEK_WINDOW_SIZE
 from db import STOCK_VALUES, query_stock_all_code, query_stock_data_by_code, connection
 from device import get_device
-from threadPoolUtil import get_transformer_thread_pool
 
 
 class StockDataSet(Dataset):
